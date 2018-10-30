@@ -1,7 +1,8 @@
 import React from 'react'
+import { withRouter } from 'next/router'
 import Photo from '../components/frame'
 
-export default ({ url: { query: { id } } }) => (
+export default withRouter(({ router: { query: { id } } }) => (
   <div className='permalink'>
     <div className='wrap'>
       <Photo id={id} />
@@ -19,4 +20,4 @@ export default ({ url: { query: { id } } }) => (
       }
     `}</style>
   </div>
-)
+))

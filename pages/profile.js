@@ -1,6 +1,7 @@
 import React from 'react'
+import { withRouter } from 'next/router'
 
-export default ({ url: { query: { id } } }) => (
+export default withRouter(({ router: { query: { id } } }) => (
   <div className='main'>
     <h1 className='heading'>
       User profile:
@@ -21,4 +22,4 @@ export default ({ url: { query: { id } } }) => (
       }
     `}</style>
   </div>
-)
+))

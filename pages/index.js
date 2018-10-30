@@ -1,9 +1,9 @@
 import React from 'react'
-import Router from 'next/router'
+import Router, { withRouter } from 'next/router'
 
 import Modal from '../components/modal'
 
-export default class extends React.Component {
+export default withRouter(class extends React.Component {
   static getInitialProps () {
     return {
       photos: new Array(15).fill(0).map((v, k) => k + 1)
@@ -25,9 +25,9 @@ export default class extends React.Component {
   }
 
   onKeyDown (e) {
-    if (!this.props.url.query.photoId) return
+    if (!this.props.router.query.photoId) return
     if (e.keyCode === 27) {
-      this.props.url.back()
+      this.props.router.back()
     }
   }
 
@@ -41,14 +41,14 @@ export default class extends React.Component {
   }
 
   render () {
-    const { url, photos } = this.props
+    const { router, photos } = this.props
 
     return (
       <div className='list'>
         {
-          url.query.photoId &&
+          router.query.photoId &&
             <Modal
-              id={url.query.photoId}
+              id={router.query.photoId}
               onDismiss={() => this.dismissModal()}
             />
         }
@@ -95,4 +95,4 @@ export default class extends React.Component {
       </div>
     )
   }
-}
+})
